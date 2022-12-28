@@ -1,5 +1,5 @@
 async function getData() {
-    let jsonFile = "recipes.json";
+    let jsonFile = "./recipes.json";
     let response = await fetch(jsonFile);
     let data = await response.json();
     let {recipes} = await data;
