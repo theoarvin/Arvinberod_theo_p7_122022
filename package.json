@@ -1,0 +1,14 @@
+{
+  "name": "p7",
+  "version": "1.0.0",
+  "description": "",
+  "main": "recipes.js",
+  "scripts": {
+    "sass": "sass --watch ./assets/styles/index.scss:./assets/styles/style.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.57.1"
+  }
+}

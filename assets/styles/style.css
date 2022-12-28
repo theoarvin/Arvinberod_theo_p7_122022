@@ -1,0 +1,254 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  border: none;
+  text-decoration: none;
+  font-family: "Lato", sans-serif;
+  scroll-behavior: smooth;
+}
+
+.logo {
+  display: block;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.search {
+  text-align: center;
+  margin-top: 20px;
+  position: relative;
+}
+.search input {
+  width: 80%;
+  height: 69px;
+  border-radius: 5px;
+  background: #E5E5E5;
+  padding-left: 20px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #000000;
+  opacity: 0.45;
+}
+.search img {
+  position: absolute;
+  right: 200px;
+  top: 18px;
+}
+
+.tags {
+  height: 80px;
+  width: 80%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.ingredients-tag, .appareils-tag, .ustensiles-tag {
+  width: 117px;
+  height: 47px;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.ingredients-tag {
+  background: #3282F7;
+}
+
+.appareils-tag {
+  background: #68D9A4;
+}
+
+.ustensiles-tag {
+  background: #ED6454;
+}
+
+.filters-block {
+  width: 80%;
+  margin: auto;
+  display: flex;
+}
+
+.filter {
+  width: 170px;
+  height: 69px;
+  margin-right: 25px;
+  border-radius: 5px;
+  background: #3282F7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.filter span {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 22px;
+  text-align: center;
+  color: #FFFFFF;
+  display: block;
+  margin-left: 20px;
+}
+.filter input {
+  display: none;
+  margin-left: 20px;
+  background: transparent;
+  width: 250px;
+  border: none;
+  height: 40px;
+  color: #FFFFFF;
+}
+.filter input::placeholder {
+  color: #FFFFFF;
+  opacity: 0.8;
+}
+.filter em {
+  color: #fff;
+}
+.filter .btn-filter {
+  display: flex;
+  width: 50px;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+.filter2 {
+  background: #68D9A4;
+}
+
+.filter3 {
+  background: #ED6454;
+}
+
+.filter1-active {
+  min-width: 667px;
+}
+
+.filter2-active {
+  min-width: 250px;
+}
+
+.filter3-active {
+  min-width: 500px;
+}
+
+.block-list, .block-list2, .block-list3 {
+  background: #3282F7;
+  width: 667px;
+  overflow-y: hidden;
+  left: 0;
+  color: #fff;
+  flex-wrap: wrap;
+  display: none;
+  flex-direction: column;
+  height: 600px;
+  position: absolute;
+  top: 65px;
+  padding: 15px;
+}
+.block-list li, .block-list2 li, .block-list3 li {
+  padding-right: 25px;
+  padding-bottom: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.block-list2 {
+  background: #68D9A4;
+  width: 250px;
+}
+
+.block-list3 {
+  background: #ED6454;
+  width: 500px;
+}
+
+.recipes-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 40px;
+  grid-row-gap: 40px;
+  height: auto;
+  margin: auto;
+  margin-top: 40px;
+  width: 80%;
+}
+
+.card {
+  display: block;
+  width: 100%;
+  height: 400px;
+  margin: auto;
+  border-radius: 5px;
+  background: #E7E7E7;
+}
+.card .card-img {
+  height: 178px;
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background: #C7BEBE;
+}
+.card .card-desc {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+.card .card-desc h2 {
+  font-size: 18px;
+}
+.card .card-desc span {
+  display: flex;
+  align-items: center;
+}
+.card .card-desc span svg {
+  margin-right: 5px;
+}
+.card .recipe {
+  display: flex;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.card .recipe .recipe-ingredients {
+  width: 50%;
+  height: auto;
+  padding: 5px;
+  font-size: 12px;
+  line-height: 14px;
+}
+.card .recipe .recipe-ingredients span {
+  font-family: "Lato";
+  font-style: normal;
+  white-space: nowrap;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+}
+.card .recipe .recipe-desc {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  overflow: hidden;
+  width: 50%;
+  font-size: 12px;
+  padding: 5px;
+  line-height: 100%;
+  height: 110px;
+  overflow: ellipsis;
+}
+
+/*# sourceMappingURL=style.css.map */
