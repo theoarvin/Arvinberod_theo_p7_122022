@@ -16,8 +16,8 @@ async function init() {
 init()
 
 function displayRecipes(recipes){
+   console.log(recipes);
    const blockRecipes = document.querySelector('.recipes-block');
-   
    recipes.forEach((recipe) => {
     
     const card = document.createElement('div');
@@ -64,7 +64,5 @@ function displayRecipes(recipes){
     recipeBlock.appendChild(recipeDesc)
     blockRecipes.appendChild(card)
    })
-
-   
 }  
 

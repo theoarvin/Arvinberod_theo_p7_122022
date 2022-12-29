@@ -30,8 +30,8 @@ async function getIngredients(recipes){
     recipes.forEach((recipe) => {
      
       for( let recip of recipe.ingredients ){
-         if(array.includes(recip.ingredient) === false){
-             array.push(recip.ingredient)
+         if(array.includes(recip.ingredient.toLowerCase()) === false){
+             array.push(recip.ingredient.toLowerCase())
          }
         }
     })
@@ -49,7 +49,7 @@ async function getIngredients(recipes){
     const className = '.block-list'
     const inputClassName = '.input1'
     const classNameList = 'list-ingredients'
-    searchTag(array, className, inputClassName, classNameList)
+    searchTag(array, className, inputClassName, classNameList, recipes)
     displayIngredientsTags()
  }
  
@@ -75,8 +75,8 @@ async function getIngredients(recipes){
        const className = '.block-list2'
        const inputClassName = '.input2'
        const classNameList = 'list-appareils'
-       searchTag(array, className, inputClassName,  classNameList)
-       displayAppareilsTags()
+       searchTag(array, className, inputClassName,  classNameList, recipes)
+       displayAppareilsTags(recipes)
  }
  
 
@@ -85,8 +85,8 @@ async function getIngredients(recipes){
      recipes.forEach((recipe) => {
      
          for( let recip of recipe.ustensils ){
-            if(array.includes(recip) === false){
-                array.push(recip)
+            if(array.includes(recip.toLowerCase()) === false){
+                array.push(recip.toLowerCase())
             }
            }
        })
@@ -103,8 +103,8 @@ async function getIngredients(recipes){
        const className = '.block-list3'
        const inputClassName = '.input3'
        const classNameList = 'list-ustensiles'
-       searchTag(array, className, inputClassName, classNameList)
-       displayUstensilesTags()
+       searchTag(array, className, inputClassName, classNameList, recipes)
+       displayUstensilesTags(recipes)
  }
 
 
@@ -137,9 +137,9 @@ async function getIngredients(recipes){
   })
 }
 
-function displayAppareilsTags(){
+function displayAppareilsTags(recipes){
     const list = document.querySelectorAll('.list-appareils')
-    
+    const arrayTag = [];
     list.forEach((ingredient) => {
         
        ingredient.addEventListener('click', function(){
@@ -159,17 +159,57 @@ function displayAppareilsTags(){
             tag.classList.add('appareils-tag',)
             tag.innerHTML = this.textContent + `<i class="fa-solid fa-xmark close-tag"></i>`;
             tagBlock.appendChild(tag)
+            arrayTag.push(tag.textContent)
           }
-          // delete tag with close btn 
-          tag.childNodes[1].addEventListener('click', function(){
-             tag.remove(this)
-          })
+                // search recipes by tags
+         const blockRecipes = document.querySelector('.recipes-block');
+         const arrayRecipes = []
+         
+         function tagRecipe(){
+            console.log(arrayTag);
+            if(arrayTag.length === 0){
+               console.log('non');
+               blockRecipes.innerHTML = ""
+               displayRecipes(recipes)
+            }else{
+               recipes.forEach((recipe) => { 
+                  if (arrayTag.length === 1){
+                     if(recipe.appliance.includes(arrayTag[0])){
+                        arrayRecipes.push(recipe)
+                      }
+                   }
+                   if (arrayTag.length === 2){
+                     if(recipe.appliance.includes(arrayTag[0]) && recipe.appliance.includes(arrayTag[1])){
+                        arrayRecipes.push(recipe)
+                      }
+                   }
+                   if (arrayTag.length === 3){
+                     if(recipe.appliance.includes(arrayTag[0]) && recipe.appliance.includes(arrayTag[1]) && recipe.appliance.includes(arrayTag[2])){
+                        arrayRecipes.push(recipe)
+                      }
+                   }
+                   blockRecipes.innerHTML = ""
+                   displayRecipes(arrayRecipes)
+                })  
+            }  
+         }  
+         tagRecipe()
+         // delete tag with close btn 
+         tag.childNodes[1].addEventListener('click', function(){
+            const index = arrayTag.indexOf(tag.textContent);
+            arrayTag.splice(index, 1);
+            console.log(arrayTag);
+            tag.remove(this)
+            blockRecipes.innerHTML = ""
+            tagRecipe()
+         }) 
        })
     })
   }
 
- function displayUstensilesTags(){
+ function displayUstensilesTags(recipes){
     const list = document.querySelectorAll('.list-ustensiles');
+    const arrayTag = [];
     list.forEach((ingredient) => {
        ingredient.addEventListener('click', function(){
           // création tag 
@@ -187,26 +227,63 @@ function displayAppareilsTags(){
             tag.classList.add('ustensiles-tag',)
             tag.innerHTML = this.textContent + `<i class="fa-solid fa-xmark close-tag"></i>`;
             tagBlock.appendChild(tag)
+            arrayTag.push(tag.textContent)
           }
+          // search recipes by tags
+         const blockRecipes = document.querySelector('.recipes-block');
+         const arrayRecipes = []
+
+         function tagRecipe(){
+            console.log(arrayTag);
+            if(arrayTag.length === 0){
+               console.log('non');
+               blockRecipes.innerHTML = ""
+               displayRecipes(recipes)
+            }else{
+               recipes.forEach((recipe) => { 
+                  if (arrayTag.length === 1){
+                     if(recipe.ustensils.includes(arrayTag[0])){
+                        arrayRecipes.push(recipe)
+                      }
+                   }
+                   if (arrayTag.length === 2){
+                     if(recipe.ustensils.includes(arrayTag[0]) && recipe.ustensils.includes(arrayTag[1])){
+                        arrayRecipes.push(recipe)
+                      }
+                   }
+                   if (arrayTag.length === 3){
+                     if(recipe.ustensils.includes(arrayTag[0]) && recipe.ustensils.includes(arrayTag[1]) && recipe.ustensils.includes(arrayTag[2])){
+                        arrayRecipes.push(recipe)
+                      }
+                   }
+                   blockRecipes.innerHTML = ""
+                   displayRecipes(arrayRecipes)
+                })  
+            }  
+         }  
+         tagRecipe()
           // delete tag with close btn 
           tag.childNodes[1].addEventListener('click', function(){
+             const index = arrayTag.indexOf(tag.textContent);
+             arrayTag.splice(index, 1);
+             console.log(arrayTag);
              tag.remove(this)
-          })
-         
+             blockRecipes.innerHTML = ""
+             tagRecipe()
+          }) 
        })
     })
 }
 
-function searchTag(array,className,input,classNameList){
+function searchTag(array,className,input,classNameList,recipes){
    const inputvalue = document.querySelectorAll(input);
-  
   
      inputvalue.forEach((value) => {
         value.addEventListener('input', (e) => {;
        
             const searchedString = e.target.value.toLowerCase()
             const filteredArr = array.filter(el => el.toLowerCase().includes(searchedString))
-            let blockList = document.querySelector(className);
+            const blockList = document.querySelector(className);
             blockList.innerHTML = ""
             
             filteredArr.forEach((ingredient) => {
@@ -216,8 +293,8 @@ function searchTag(array,className,input,classNameList){
                 blockList.appendChild(list)
             })
             displayIngredientsTags()
-            displayUstensilesTags()
-            displayAppareilsTags() 
+            displayUstensilesTags(recipes)
+            displayAppareilsTags(recipes) 
          })
      })  
 }
