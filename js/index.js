@@ -8,15 +8,16 @@ async function getData() {
 
 async function init() {
     const recipes = await getData()
-    getIngredients(recipes)
-    getAppareils(recipes)
-    getUstensiles(recipes)
-    displayRecipes(recipes)
+    const arrayTag = [];
+    const arrayRecipes = [];
+    
+    displayRecipes(recipes, arrayTag, arrayRecipes)
 }
 init()
 
-function displayRecipes(recipes){
-   console.log(recipes);
+function displayRecipes(recipes, arrayTag, arrayRecipes){
+   // console.log('recipes index' , recipes);
+   //console.log(arrayTag);
    const blockRecipes = document.querySelector('.recipes-block');
    recipes.forEach((recipe) => {
     
@@ -54,7 +55,6 @@ function displayRecipes(recipes){
         }
         recipeIngredients.appendChild(ingredient)
     }
- 
     card.appendChild(cardImg)
     card.appendChild(cardDesc)
     cardDesc.appendChild(h2)
@@ -64,5 +64,9 @@ function displayRecipes(recipes){
     recipeBlock.appendChild(recipeDesc)
     blockRecipes.appendChild(card)
    })
+    //console.log('index recipe' , recipes);
+    getIngredients(recipes, arrayTag, arrayRecipes)
+    getAppareils(recipes, arrayTag, arrayRecipes)
+    getUstensiles(recipes, arrayTag, arrayRecipes)
 }  
 
