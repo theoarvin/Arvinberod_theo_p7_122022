@@ -114,19 +114,19 @@
 }
 
 .filter1-active{
-    min-width: 667px;
+    min-width: 360px;
 }
 .filter2-active{
-    min-width: 250px;
+    min-width: 240px;
 }
 
 .filter3-active{
-    min-width: 500px;
+    min-width: 360px;
 }
 
 .block-list, .block-list2, .block-list3{
     background: #3282F7;
-    width: 667px;
+    width: 360px;
     overflow-y: hidden;
     left: 0;
     color: #fff;
@@ -139,6 +139,7 @@
     padding: 15px;
     li{
         padding-right: 25px;
+        width: 190px;
         padding-bottom: 10px;
         font-style: normal;
         font-weight: 400;
@@ -148,12 +149,12 @@
 
 .block-list2{
     background: #68D9A4;
-    width: 250px;
+    width: 240px;
 }
 
 .block-list3{
     background: #ED6454;
-    width: 500px;
+    width: 360px;
 }
 
 .recipes-block{
