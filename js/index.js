@@ -61,7 +61,7 @@ function searchRecipes(recipes, arrayTag, totalRecipes) {
         recipe.ingredients.forEach((ingredient) => {
           if (ingredient.ingredient.toLowerCase().includes(searchedString.toLowerCase())) {
             return true;
-        }
+          }
         })     
         
         // search by name 
