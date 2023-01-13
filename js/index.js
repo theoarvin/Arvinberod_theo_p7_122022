@@ -11,8 +11,6 @@ async function init() {
   const arrayTag = [];
   const totalRecipes = recipes;
   searchRecipes(recipes, arrayTag, totalRecipes);
-  //displayRecipes(recipes, arrayTag, totalRecipes);
-  
 }
 init();
 
@@ -60,11 +58,12 @@ function searchRecipes(recipes, arrayTag, totalRecipes) {
     const searchedString = e.target.value.toLowerCase();
     const filteredArr = recipes.filter((recipe) => {
         // search by description
-        for (ingredient of recipe.ingredients) { 
-            if (ingredient.ingredient.toLowerCase().includes(searchedString.toLowerCase())) {
-                return true;
-            }
+        recipe.ingredients.forEach((ingredient) => {
+          if (ingredient.ingredient.toLowerCase().includes(searchedString.toLowerCase())) {
+            return true;
         }
+        })     
+        
         // search by name 
         if(recipe.name.toLowerCase().includes(searchedString.toLowerCase())){
             return true

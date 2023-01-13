@@ -59,10 +59,6 @@ btnFilters[2].addEventListener('click', () => {
 })
 
 
-
-
-
-
 function getIngredients(recipes, arrayTag, totalRecipes) {
   const array = [];
   recipes.forEach((recipe) => {
