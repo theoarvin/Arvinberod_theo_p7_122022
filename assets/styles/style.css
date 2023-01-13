@@ -120,6 +120,10 @@
   justify-content: center;
   align-items: center;
   height: 50px;
+  margin-right: 10px;
+}
+.filter .btn-filter-active {
+  transform: rotate(180deg);
 }
 
 .filter2 {
@@ -135,7 +139,7 @@
 }
 
 .filter2-active {
-  min-width: 240px;
+  min-width: 260px;
 }
 
 .filter3-active {
@@ -144,6 +148,8 @@
 
 .block-list, .block-list2, .block-list3 {
   background: #3282F7;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   width: 360px;
   overflow-y: hidden;
   left: 0;
@@ -151,14 +157,13 @@
   flex-wrap: wrap;
   display: none;
   flex-direction: column;
-  height: 600px;
+  height: 200px;
   position: absolute;
   top: 65px;
   padding: 15px;
 }
 .block-list li, .block-list2 li, .block-list3 li {
   padding-right: 25px;
-  width: 190px;
   padding-bottom: 10px;
   font-style: normal;
   font-weight: 400;
@@ -167,7 +172,7 @@
 
 .block-list2 {
   background: #68D9A4;
-  width: 240px;
+  width: 260px;
 }
 
 .block-list3 {

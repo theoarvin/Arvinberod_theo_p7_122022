@@ -1,36 +1,67 @@
 let filters = document.querySelectorAll(".filter");
+const btnFilters = document.querySelectorAll(".btn-filter");
 const filter1 = document.querySelector(".filter1");
 const filter2 = document.querySelector(".filter2");
 const filter3 = document.querySelector(".filter3");
 
-filters.forEach((filter) => {
-  filter.childNodes[5].addEventListener("click", () => {
-    const filterTitle = filter.childNodes[1];
-    console.log(filter.childNodes[8]);
-    filterTitle.style.display =
-      filterTitle.style.display === "none" ? "block" : "none";
-    const filterSearch = filter.childNodes[3];
-    filterSearch.style.display =
-      filterSearch.style.display === "block" ? "none" : "block";
-    const blockList = filter.childNodes[8];
-    blockList.style.display =
-      blockList.style.display === "flex" ? "none" : "flex";
-  });
-});
+btnFilters[0].addEventListener('click', () => {
+  const filterTitle = document.querySelector('.filter-title1');
+  const filterSearch = document.querySelector('.input1');
+  const blockList = document.querySelector('.block-list');
+  // rotate the arrow
+  const btnFilter = document.querySelector('.btn-filter1');
+  btnFilter.classList.toggle("btn-filter-active")
+  // for the size of the opening tagbox
+  filter1.classList.toggle("filter1-active");
+  
+  filterTitle.style.display =
+  filterTitle.style.display === "none" ? "block" : "none";
+  filterSearch.style.display =
+  filterSearch.style.display === "block" ? "none" : "block";
+  blockList.style.display =
+  blockList.style.display === "flex" ? "none" : "flex";
+})
 
-// for the size of the opening tagbox
-const btnFilters = document.querySelectorAll(".btn-filter");
-btnFilters[0].addEventListener("click", function () {
-  filters[0].classList.toggle("filter1-active");
-});
+btnFilters[1].addEventListener('click', () => {
+  const filterTitle = document.querySelector('.filter-title2');
+  const filterSearch = document.querySelector('.input2');
+  const blockList = document.querySelector('.block-list2');
+  // rotate the arrow
+  const btnFilter = document.querySelector('.btn-filter2');
+  btnFilter.classList.toggle("btn-filter-active")
+  // for the size of the opening tagbox
+  filter2.classList.toggle("filter2-active");
+  
+  filterTitle.style.display =
+  filterTitle.style.display === "none" ? "block" : "none";
+  filterSearch.style.display =
+  filterSearch.style.display === "block" ? "none" : "block";
+  blockList.style.display =
+  blockList.style.display === "flex" ? "none" : "flex";
+})
 
-btnFilters[1].addEventListener("click", function () {
-  filters[1].classList.toggle("filter2-active");
-});
+btnFilters[2].addEventListener('click', () => {
+  const filterTitle = document.querySelector('.filter-title3');
+  const filterSearch = document.querySelector('.input3');
+  const blockList = document.querySelector('.block-list3');
+  // rotate the arrow
+  const btnFilter = document.querySelector('.btn-filter3');
+  btnFilter.classList.toggle("btn-filter-active")
+  // for the size of the opening tagbox
+  filter3.classList.toggle("filter3-active");
+  
+  filterTitle.style.display =
+  filterTitle.style.display === "none" ? "block" : "none";
+  filterSearch.style.display =
+  filterSearch.style.display === "block" ? "none" : "block";
+  blockList.style.display =
+  blockList.style.display === "flex" ? "none" : "flex";
+})
 
-btnFilters[2].addEventListener("click", function () {
-  filters[2].classList.toggle("filter3-active");
-});
+
+
+
+
 
 function getIngredients(recipes, arrayTag, totalRecipes) {
   const array = [];
@@ -81,8 +112,8 @@ function getIngredients(recipes, arrayTag, totalRecipes) {
 function getAppareils(recipes, arrayTag, totalRecipes) {
   const array = [];
   for (let recip of recipes) {
-    if (array.includes(recip.appliance) === false) {
-      array.push(recip.appliance);
+    if (array.includes(recip.appliance.toLowerCase()) === false) {
+      array.push(recip.appliance.toLowerCase());
     }
   }
   // création Appareils list
@@ -300,16 +331,25 @@ function tagRecipe(recipes, arrayTag, totalRecipes) {
       return searchRecipes(totalRecipes, arrayTag, totalRecipes);
     }
     const recipFilter = totalRecipes.filter((recipe) => {
-      
       const arrayIngredients = [];
       for (ingredient of recipe.ingredients) {
         arrayIngredients.push(ingredient.ingredient.toLowerCase())
       }
+
+      const arrayUstensiles = []
+      for (ustensils of recipe.ustensils) {
+        arrayUstensiles.push(ustensils.toLowerCase())
+      }
+      
+      const arrayAppliance = []
+      arrayAppliance.push(recipe.appliance.toLowerCase())
+      
+      console.log(arrayAppliance);
       // if there are 1 tags
       if (arrayTag.length === 1) { 
         if (
-          recipe.ustensils.includes(arrayTag[0]) ||
-          recipe.appliance.includes(arrayTag[0]) ||
+          arrayUstensiles.includes(arrayTag[0]) ||
+          arrayAppliance.includes(arrayTag[0]) ||
           arrayIngredients.includes(arrayTag[0].toLowerCase())
         ) {
           return true;
@@ -318,13 +358,13 @@ function tagRecipe(recipes, arrayTag, totalRecipes) {
       // if there are 2 tags
       if (arrayTag.length === 2) {
           if (
-            recipe.ustensils.includes(arrayTag[0]) ||
-            recipe.appliance.includes(arrayTag[0]) ||
+            arrayUstensiles.includes(arrayTag[0]) ||
+            arrayAppliance.includes(arrayTag[0]) ||
             arrayIngredients.includes(arrayTag[0].toLowerCase())
           ) {
             if (
-              recipe.ustensils.includes(arrayTag[1]) ||
-              recipe.appliance.includes(arrayTag[1]) ||
+              arrayUstensiles.includes(arrayTag[1]) ||
+              arrayAppliance.includes(arrayTag[1]) ||
               arrayIngredients.includes(arrayTag[1].toLowerCase())
             ) {
               return true;
@@ -334,18 +374,18 @@ function tagRecipe(recipes, arrayTag, totalRecipes) {
       // if there are 3 tags
       if (arrayTag.length === 3) {
         if (
-          recipe.ustensils.includes(arrayTag[0]) ||
-          recipe.appliance.includes(arrayTag[0]) ||
+          arrayUstensiles.includes(arrayTag[0]) ||
+          arrayAppliance.includes(arrayTag[0]) ||
           arrayIngredients.includes(arrayTag[0].toLowerCase())
         ) {
           if (
-            recipe.ustensils.includes(arrayTag[1]) ||
-            recipe.appliance.includes(arrayTag[1]) ||
+            arrayUstensiles.includes(arrayTag[1]) ||
+            arrayAppliance.includes(arrayTag[1]) ||
             arrayIngredients.includes(arrayTag[1].toLowerCase())
           ) {
             if (
-              recipe.ustensils.includes(arrayTag[2]) ||
-              recipe.appliance.includes(arrayTag[2]) ||
+              arrayUstensiles.includes(arrayTag[2]) ||
+              arrayAppliance.includes(arrayTag[2]) ||
               arrayIngredients.includes(arrayTag[2].toLowerCase())
             ) {
               return true;
