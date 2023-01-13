@@ -25,68 +25,80 @@ function searchRecipes(recipes, arrayTag, totalRecipes) {
     }
   });
 
-  if(search.value.length > 0){
+  if (search.value.length > 0) {
     const blockRecipes = document.querySelector(".recipes-block");
     blockRecipes.innerHTML = "";
     const searchedString = search.value.toLowerCase();
     const filteredArr = recipes.filter((recipe) => {
-        
-        for (ingredient of recipe.ingredients) {
-            
-            if (ingredient.ingredient.toLowerCase().includes(searchedString.toLowerCase())) {
-                return true;
-            }
+      /*for (ingredient of recipe.ingredients) {
+        if (
+          ingredient.ingredient
+            .toLowerCase()
+            .includes(searchedString.toLowerCase())
+        ) {
+          return true;
         }
-        
-        if(recipe.name.toLowerCase().includes(searchedString.toLowerCase())){
-            return true
-        }
-        
-        if(recipe.description.toLowerCase().includes(searchedString.toLowerCase())){
-           return true
-        }      
+      }*/
+      const ingredientArr = [];
+      // search by ingredient
+      recipe.ingredients.forEach((ingredients) => {
+        ingredientArr.push(ingredients.ingredient.toLowerCase());
+      });
+      if (ingredientArr.includes(searchedString.toLowerCase())) {
+        return true;
+      }
+
+      if (recipe.name.toLowerCase().includes(searchedString.toLowerCase())) {
+        return true;
+      }
+
+      if (
+        recipe.description.toLowerCase().includes(searchedString.toLowerCase())
+      ) {
+        return true;
+      }
     });
     displayRecipes(filteredArr, arrayTag, totalRecipes);
-  }else{
+  } else {
     displayRecipes(recipes, arrayTag, totalRecipes);
   }
 
-  //listen to main search 
+  //listen to main search
   search.addEventListener("input", (e) => {
     const blockRecipes = document.querySelector(".recipes-block");
     blockRecipes.innerHTML = "";
     const searchedString = e.target.value.toLowerCase();
+
     const filteredArr = recipes.filter((recipe) => {
-        // search by description
-        recipe.ingredients.forEach((ingredient) => {
-          if (ingredient.ingredient.toLowerCase().includes(searchedString.toLowerCase())) {
-            return true;
-          }
-        })     
-        
-        // search by name 
-        if(recipe.name.toLowerCase().includes(searchedString.toLowerCase())){
-            return true
-        }
-        // search by description 
-        if(recipe.description.toLowerCase().includes(searchedString.toLowerCase())){
-           return true
-        }      
+      const ingredientArr = [];
+      // search by ingredient
+      recipe.ingredients.forEach((ingredients) => {
+        ingredientArr.push(ingredients.ingredient.toLowerCase());
+      });
+      if (ingredientArr.includes(searchedString.toLowerCase())) {
+        return true;
+      }
+      if (recipe.name.toLowerCase().includes(searchedString.toLowerCase())) {
+        return true;
+      }
+      if (
+        recipe.description.toLowerCase().includes(searchedString.toLowerCase())
+      ) {
+        return true;
+      }
     });
     displayRecipes(filteredArr, arrayTag, totalRecipes);
   });
-  
 }
 
 function displayRecipes(recipes, arrayTag, totalRecipes) {
-  
   const blockRecipes = document.querySelector(".recipes-block");
-  if (recipes.length === 0){
-    const infoText = document.createElement('p');
+  if (recipes.length === 0) {
+    const infoText = document.createElement("p");
     infoText.textContent = `Aucune recette ne correspond à votre critère… vous pouvez
-    chercher « tarte aux pommes », « poisson », etc.`
-    blockRecipes.appendChild(infoText)
-   }
+    chercher « tarte aux pommes », « poisson », etc.`;
+    blockRecipes.appendChild(infoText);
+  }
 
   recipes.forEach((recipe) => {
     const card = document.createElement("div");
@@ -131,7 +143,7 @@ function displayRecipes(recipes, arrayTag, totalRecipes) {
     recipeBlock.appendChild(recipeDesc);
     blockRecipes.appendChild(card);
   });
-  
+
   getIngredients(recipes, arrayTag, totalRecipes);
   getAppareils(recipes, arrayTag, totalRecipes);
   getUstensiles(recipes, arrayTag, totalRecipes);
