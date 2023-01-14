@@ -17,47 +17,44 @@ init();
 function searchRecipes(recipes, arrayTag, totalRecipes) {
   // get the search input
   const search = document.querySelector(".search-input");
-
-  const arrayRecipesName = [];
-  recipes.forEach((recipe) => {
-    if (arrayRecipesName.includes(recipe.name.toLowerCase()) === false) {
-      arrayRecipesName.push(recipe.name.toLowerCase());
-    }
-  });
-
+  
   if (search.value.length > 0) {
     const blockRecipes = document.querySelector(".recipes-block");
     blockRecipes.innerHTML = "";
     const searchedString = search.value.toLowerCase();
-    const filteredArr = recipes.filter((recipe) => {
-      /*for (ingredient of recipe.ingredients) {
+    const filteredArr = []
+    for ( let recipe of recipes){
+      for (ingredient of recipe.ingredients) {
         if (
           ingredient.ingredient
             .toLowerCase()
             .includes(searchedString.toLowerCase())
         ) {
-          return true;
+          if(filteredArr.includes(recipe)){
+            return null
+          }else{
+            console.log('ok');
+            filteredArr.push(recipe)
+          }
         }
-      }*/
-      const ingredientArr = [];
-      // search by ingredient
-      recipe.ingredients.forEach((ingredients) => {
-        ingredientArr.push(ingredients.ingredient.toLowerCase());
-      });
-      if (ingredientArr.includes(searchedString.toLowerCase())) {
-        return true;
+      }
+      
+      if(recipe.name.toLowerCase().includes(searchedString.toLowerCase())){
+          if(filteredArr.includes(recipe)){
+            return null
+          }else{
+            filteredArr.push(recipe)
+          }
       }
 
-      if (recipe.name.toLowerCase().includes(searchedString.toLowerCase())) {
-        return true;
+      if(recipe.description.toLowerCase().includes(searchedString.toLowerCase())){
+        if(filteredArr.includes(recipe)){
+          return null
+        }else{
+          filteredArr.push(recipe)
+        }
       }
-
-      if (
-        recipe.description.toLowerCase().includes(searchedString.toLowerCase())
-      ) {
-        return true;
-      }
-    });
+    }
     displayRecipes(filteredArr, arrayTag, totalRecipes);
   } else {
     displayRecipes(recipes, arrayTag, totalRecipes);
@@ -68,25 +65,42 @@ function searchRecipes(recipes, arrayTag, totalRecipes) {
     const blockRecipes = document.querySelector(".recipes-block");
     blockRecipes.innerHTML = "";
     const searchedString = e.target.value.toLowerCase();
+    const filteredArr = []
+    
+    
+    for ( let recipe of recipes){
+      for (ingredient of recipe.ingredients) {
+        if (
+          ingredient.ingredient
+            .toLowerCase()
+            .includes(searchedString.toLowerCase())
+        ) {
+          if(filteredArr.includes(recipe)){
+            return null
+          }else{
+            console.log('ok');
+            filteredArr.push(recipe)
+          }
+        }
+      }
+      
+      if(recipe.name.toLowerCase().includes(searchedString.toLowerCase())){
+          if(filteredArr.includes(recipe)){
+            return null
+          }else{
+            filteredArr.push(recipe)
+          }
+      }
 
-    const filteredArr = recipes.filter((recipe) => {
-      const ingredientArr = [];
-      // search by ingredient
-      recipe.ingredients.forEach((ingredients) => {
-        ingredientArr.push(ingredients.ingredient.toLowerCase());
-      });
-      if (ingredientArr.includes(searchedString.toLowerCase())) {
-        return true;
+      if(recipe.description.toLowerCase().includes(searchedString.toLowerCase())){
+        if(filteredArr.includes(recipe)){
+          return null
+        }else{
+          filteredArr.push(recipe)
+        }
       }
-      if (recipe.name.toLowerCase().includes(searchedString.toLowerCase())) {
-        return true;
-      }
-      if (
-        recipe.description.toLowerCase().includes(searchedString.toLowerCase())
-      ) {
-        return true;
-      }
-    });
+    }
+    
     displayRecipes(filteredArr, arrayTag, totalRecipes);
   });
 }
