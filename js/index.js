@@ -18,13 +18,6 @@ function searchRecipes(recipes, arrayTag, totalRecipes) {
   // get the search input
   const search = document.querySelector(".search-input");
 
-  const arrayRecipesName = [];
-  recipes.forEach((recipe) => {
-    if (arrayRecipesName.includes(recipe.name.toLowerCase()) === false) {
-      arrayRecipesName.push(recipe.name.toLowerCase());
-    }
-  });
-
   if (search.value.length > 0) {
     const blockRecipes = document.querySelector(".recipes-block");
     blockRecipes.innerHTML = "";
@@ -36,14 +29,12 @@ function searchRecipes(recipes, arrayTag, totalRecipes) {
       recipe.ingredients.forEach((ingredients) => {
         ingredientArr.push(ingredients.ingredient.toLowerCase());
       });
-      if (ingredientArr.includes(searchedString.toLowerCase())) {
-        return true;
-      }
-
       if (recipe.name.toLowerCase().includes(searchedString.toLowerCase())) {
         return true;
       }
-
+      if (ingredientArr.includes(searchedString.toLowerCase())) {
+        return true;
+      }
       if (
         recipe.description.toLowerCase().includes(searchedString.toLowerCase())
       ) {
@@ -67,12 +58,15 @@ function searchRecipes(recipes, arrayTag, totalRecipes) {
       recipe.ingredients.forEach((ingredients) => {
         ingredientArr.push(ingredients.ingredient.toLowerCase());
       });
+
       if (ingredientArr.includes(searchedString.toLowerCase())) {
         return true;
       }
+
       if (recipe.name.toLowerCase().includes(searchedString.toLowerCase())) {
         return true;
       }
+      
       if (
         recipe.description.toLowerCase().includes(searchedString.toLowerCase())
       ) {
