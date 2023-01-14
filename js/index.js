@@ -30,15 +30,7 @@ function searchRecipes(recipes, arrayTag, totalRecipes) {
     blockRecipes.innerHTML = "";
     const searchedString = search.value.toLowerCase();
     const filteredArr = recipes.filter((recipe) => {
-      /*for (ingredient of recipe.ingredients) {
-        if (
-          ingredient.ingredient
-            .toLowerCase()
-            .includes(searchedString.toLowerCase())
-        ) {
-          return true;
-        }
-      }*/
+     
       const ingredientArr = [];
       // search by ingredient
       recipe.ingredients.forEach((ingredients) => {
