@@ -24,20 +24,7 @@ function searchRecipes(recipes, arrayTag, totalRecipes) {
     const searchedString = search.value.toLowerCase();
     const filteredArr = []
     for ( let recipe of recipes){
-      for (ingredient of recipe.ingredients) {
-        if (
-          ingredient.ingredient
-            .toLowerCase()
-            .includes(searchedString.toLowerCase())
-        ) {
-          if(filteredArr.includes(recipe)){
-            return null
-          }else{
-            console.log('ok');
-            filteredArr.push(recipe)
-          }
-        }
-      }
+     
       
       if(recipe.name.toLowerCase().includes(searchedString.toLowerCase())){
           if(filteredArr.includes(recipe)){
@@ -69,7 +56,7 @@ function searchRecipes(recipes, arrayTag, totalRecipes) {
     
     
     for ( let recipe of recipes){
-      for (ingredient of recipe.ingredients) {
+     /* for (let ingredient of recipe.ingredients) {
         if (
           ingredient.ingredient
             .toLowerCase()
@@ -83,6 +70,8 @@ function searchRecipes(recipes, arrayTag, totalRecipes) {
           }
         }
       }
+      */
+      
       
       if(recipe.name.toLowerCase().includes(searchedString.toLowerCase())){
           if(filteredArr.includes(recipe)){
@@ -92,13 +81,13 @@ function searchRecipes(recipes, arrayTag, totalRecipes) {
           }
       }
 
-      if(recipe.description.toLowerCase().includes(searchedString.toLowerCase())){
+      else if(recipe.description.toLowerCase().includes(searchedString.toLowerCase())){
         if(filteredArr.includes(recipe)){
           return null
         }else{
           filteredArr.push(recipe)
         }
-      }
+      } 
     }
     
     displayRecipes(filteredArr, arrayTag, totalRecipes);
