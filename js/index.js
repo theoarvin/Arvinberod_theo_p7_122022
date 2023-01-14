@@ -17,28 +17,40 @@ init();
 function searchRecipes(recipes, arrayTag, totalRecipes) {
   // get the search input
   const search = document.querySelector(".search-input");
-  
+
   if (search.value.length > 0) {
     const blockRecipes = document.querySelector(".recipes-block");
     blockRecipes.innerHTML = "";
     const searchedString = search.value.toLowerCase();
-    const filteredArr = []
-    for ( let recipe of recipes){
-     
-      
-      if(recipe.name.toLowerCase().includes(searchedString.toLowerCase())){
-          if(filteredArr.includes(recipe)){
-            return null
-          }else{
-            filteredArr.push(recipe)
-          }
-      }
+    const filteredArr = [];
 
-      if(recipe.description.toLowerCase().includes(searchedString.toLowerCase())){
-        if(filteredArr.includes(recipe)){
-          return null
-        }else{
-          filteredArr.push(recipe)
+    for (let recipe of recipes) {
+      if (recipe.name.toLowerCase() === searchedString.toLowerCase()) {
+        if (filteredArr === recipe) {
+          return null;
+        } else {
+          filteredArr.push(recipe);
+        }
+      } else if (
+        recipe.description.toLowerCase() === searchedString.toLowerCase()
+      ) {
+        if (filteredArr === recipe) {
+          return null;
+        } else {
+          filteredArr.push(recipe);
+        }
+      }else{
+        for (let ingredient of recipe.ingredients) {
+          if (
+            ingredient.ingredient.toLowerCase() === searchedString.toLowerCase()
+          ) {
+            if (filteredArr === recipe) {
+              return null;
+            } else {
+              console.log("ok");
+              filteredArr.push(recipe);
+            }
+          }
         }
       }
     }
@@ -52,44 +64,39 @@ function searchRecipes(recipes, arrayTag, totalRecipes) {
     const blockRecipes = document.querySelector(".recipes-block");
     blockRecipes.innerHTML = "";
     const searchedString = e.target.value.toLowerCase();
-    const filteredArr = []
-    
-    
-    for ( let recipe of recipes){
-     /* for (let ingredient of recipe.ingredients) {
-        if (
-          ingredient.ingredient
-            .toLowerCase()
-            .includes(searchedString.toLowerCase())
-        ) {
-          if(filteredArr.includes(recipe)){
-            return null
-          }else{
-            console.log('ok');
-            filteredArr.push(recipe)
-          }
-        }
-      }
-      */
-      
-      
-      if(recipe.name.toLowerCase().includes(searchedString.toLowerCase())){
-          if(filteredArr.includes(recipe)){
-            return null
-          }else{
-            filteredArr.push(recipe)
-          }
-      }
+    const filteredArr = [];
 
-      else if(recipe.description.toLowerCase().includes(searchedString.toLowerCase())){
-        if(filteredArr.includes(recipe)){
-          return null
-        }else{
-          filteredArr.push(recipe)
+    for (let recipe of recipes) {
+      if (recipe.name.toLowerCase() === searchedString.toLowerCase()) {
+        if (filteredArr === recipe) {
+          return null;
+        } else {
+          filteredArr.push(recipe);
         }
-      } 
+      } else if (
+        recipe.description.toLowerCase() === searchedString.toLowerCase()
+      ) {
+        if (filteredArr === recipe) {
+          return null;
+        } else {
+          filteredArr.push(recipe);
+        }
+      }else{
+        for (let ingredient of recipe.ingredients) {
+          if (
+            ingredient.ingredient.toLowerCase() === searchedString.toLowerCase()
+          ) {
+            if (filteredArr === recipe) {
+              return null;
+            } else {
+              console.log("ok");
+              filteredArr.push(recipe);
+            }
+          }
+        }
+      }
     }
-    
+
     displayRecipes(filteredArr, arrayTag, totalRecipes);
   });
 }
