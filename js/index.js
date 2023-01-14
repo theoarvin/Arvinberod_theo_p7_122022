@@ -25,26 +25,27 @@ function searchRecipes(recipes, arrayTag, totalRecipes) {
     const filteredArr = [];
 
     for (let recipe of recipes) {
-      if (recipe.name.toLowerCase() === searchedString.toLowerCase()) {
-        if (filteredArr === recipe) {
+  
+      if (recipe.name.toLowerCase().includes(searchedString.toLowerCase())) {
+        if (filteredArr.includes(recipe)) {
           return null;
         } else {
           filteredArr.push(recipe);
         }
       } else if (
-        recipe.description.toLowerCase() === searchedString.toLowerCase()
+        recipe.description.toLowerCase().includes(searchedString.toLowerCase())
       ) {
-        if (filteredArr === recipe) {
+        if (filteredArr.includes(recipe)) {
           return null;
         } else {
           filteredArr.push(recipe);
         }
-      }else{
+      } else {
         for (let ingredient of recipe.ingredients) {
           if (
-            ingredient.ingredient.toLowerCase() === searchedString.toLowerCase()
+            ingredient.ingredient.toLowerCase().includes(searchedString.toLowerCase())
           ) {
-            if (filteredArr === recipe) {
+            if (filteredArr.includes(recipe)) {
               return null;
             } else {
               console.log("ok");
@@ -67,26 +68,27 @@ function searchRecipes(recipes, arrayTag, totalRecipes) {
     const filteredArr = [];
 
     for (let recipe of recipes) {
-      if (recipe.name.toLowerCase() === searchedString.toLowerCase()) {
-        if (filteredArr === recipe) {
+  
+      if (recipe.name.toLowerCase().includes(searchedString.toLowerCase())) {
+        if (filteredArr.includes(recipe)) {
           return null;
         } else {
           filteredArr.push(recipe);
         }
       } else if (
-        recipe.description.toLowerCase() === searchedString.toLowerCase()
+        recipe.description.toLowerCase().includes(searchedString.toLowerCase())
       ) {
-        if (filteredArr === recipe) {
+        if (filteredArr.includes(recipe)) {
           return null;
         } else {
           filteredArr.push(recipe);
         }
-      }else{
+      } else {
         for (let ingredient of recipe.ingredients) {
           if (
-            ingredient.ingredient.toLowerCase() === searchedString.toLowerCase()
+            ingredient.ingredient.toLowerCase().includes(searchedString.toLowerCase())
           ) {
-            if (filteredArr === recipe) {
+            if (filteredArr.includes(recipe)) {
               return null;
             } else {
               console.log("ok");
