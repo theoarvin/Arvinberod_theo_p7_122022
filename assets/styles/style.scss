@@ -2,15 +2,17 @@
     display: block;
     text-align: center;
     margin-top: 50px;
+    margin-bottom: 40px;
   }
   
 
 .search{
     text-align: center;
-    margin-top: 20px;
+    width: 80%;
+    margin: auto;
     position: relative;
     input{
-        width: 80%;
+        width: 100%;
         height: 69px;
         border-radius: 5px;
         background: #E5E5E5;
@@ -24,7 +26,7 @@
     }
     img{
        position: absolute;
-       right: 200px;
+       right: 30px;
        top: 18px;
     }
 }
@@ -60,6 +62,11 @@
     width: 80%;
     margin: auto;
     display: flex;
+    @media(max-width:1288px) {
+        flex-direction: column;
+        justify-content: space-around;
+        height: 360px;
+    }
 }
 .filter{
     width: 170px;
@@ -120,13 +127,25 @@
 
 .filter1-active{
     min-width: 360px;
+    @media(max-width:455px) {
+        min-width: 250px;
+    }
 }
 .filter2-active{
     min-width: 260px;
+    @media(max-width:1288px) {
+        min-width: 360px;
+    }
+    @media(max-width:455px) {
+        min-width: 250px;
+    }
 }
 
 .filter3-active{
     min-width: 360px;
+    @media(max-width:455px) {
+        min-width: 250px;
+    }
 }
 
 .block-list, .block-list2, .block-list3{
@@ -143,7 +162,14 @@
     height: 200px;
     position: absolute;
     top: 65px;
+    z-index: 1000;
     padding: 15px;
+    @media(max-width:1288px) {
+        height: 50px;
+    }
+    @media(max-width:455px) {
+        width: 250px;
+    }
     li{
         padding-right: 25px;
         padding-bottom: 10px;
@@ -156,11 +182,20 @@
 .block-list2{
     background: #68D9A4;
     width: 260px;
+    @media(max-width:1288px) {
+        width: 360px;
+    }
+    @media(max-width:455px) {
+        width: 250px;
+    }
 }
 
 .block-list3{
     background: #ED6454;
     width: 360px;
+    @media(max-width:455px) {
+        width: 250px;
+    }
 }
 
 .recipes-block{
@@ -172,6 +207,12 @@
     margin: auto;
     margin-top: 40px;
     width: 80%;
+    @media(max-width:1288px) {
+        grid-template-columns: 1fr 1fr;
+    }
+    @media(max-width:751px) {
+        grid-template-columns: 1fr;
+    }
 }
 
 .card {
@@ -231,13 +272,15 @@
             font-family: 'Roboto';
             font-style: normal;
             font-weight: 400;
-            overflow: hidden;
             width: 50%;
+            margin-left: 20px;
             font-size: 12px;
             padding: 5px;
             line-height: 100%;
             height: 110px;
-            overflow : ellipsis;
+            
+            
         }
     }
   }
+

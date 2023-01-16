@@ -18,39 +18,28 @@ function searchRecipes(recipes, arrayTag, totalRecipes) {
   // get the search input
   const search = document.querySelector(".search-input");
 
-  if (search.value.length > 0) {
+  if (search.value.length >= 3) {
     const blockRecipes = document.querySelector(".recipes-block");
     blockRecipes.innerHTML = "";
     const searchedString = search.value.toLowerCase();
     const filteredArr = [];
 
     for (let recipe of recipes) {
-  
       if (recipe.name.toLowerCase().includes(searchedString.toLowerCase())) {
-        if (filteredArr.includes(recipe)) {
-          return null;
-        } else {
-          filteredArr.push(recipe);
-        }
+        filteredArr.push(recipe);
       } else if (
         recipe.description.toLowerCase().includes(searchedString.toLowerCase())
       ) {
-        if (filteredArr.includes(recipe)) {
-          return null;
-        } else {
-          filteredArr.push(recipe);
-        }
+        filteredArr.push(recipe);
       } else {
         for (let ingredient of recipe.ingredients) {
           if (
-            ingredient.ingredient.toLowerCase().includes(searchedString.toLowerCase())
+            ingredient.ingredient
+              .toLowerCase()
+              .includes(searchedString.toLowerCase())
           ) {
-            if (filteredArr.includes(recipe)) {
-              return null;
-            } else {
-              console.log("ok");
-              filteredArr.push(recipe);
-            }
+            console.log("ok");
+            filteredArr.push(recipe);
           }
         }
       }
@@ -62,44 +51,36 @@ function searchRecipes(recipes, arrayTag, totalRecipes) {
 
   //listen to main search
   search.addEventListener("input", (e) => {
+    const searchedString = e.target.value.toLowerCase();
     const blockRecipes = document.querySelector(".recipes-block");
     blockRecipes.innerHTML = "";
-    const searchedString = e.target.value.toLowerCase();
+    if(searchedString.length >= 3){
     const filteredArr = [];
 
     for (let recipe of recipes) {
-  
       if (recipe.name.toLowerCase().includes(searchedString.toLowerCase())) {
-        if (filteredArr.includes(recipe)) {
-          return null;
-        } else {
-          filteredArr.push(recipe);
-        }
+        filteredArr.push(recipe);
       } else if (
         recipe.description.toLowerCase().includes(searchedString.toLowerCase())
       ) {
-        if (filteredArr.includes(recipe)) {
-          return null;
-        } else {
-          filteredArr.push(recipe);
-        }
+        filteredArr.push(recipe);
       } else {
         for (let ingredient of recipe.ingredients) {
           if (
-            ingredient.ingredient.toLowerCase().includes(searchedString.toLowerCase())
+            ingredient.ingredient
+              .toLowerCase()
+              .includes(searchedString.toLowerCase())
           ) {
-            if (filteredArr.includes(recipe)) {
-              return null;
-            } else {
-              console.log("ok");
-              filteredArr.push(recipe);
-            }
+            console.log("ok");
+            filteredArr.push(recipe);
           }
         }
       }
     }
-
     displayRecipes(filteredArr, arrayTag, totalRecipes);
+    }else{
+    displayRecipes(recipes, arrayTag, totalRecipes);
+    }
   });
 }
 
@@ -112,7 +93,14 @@ function displayRecipes(recipes, arrayTag, totalRecipes) {
     blockRecipes.appendChild(infoText);
   }
 
+ 
+   
+  
+  
+
   recipes.forEach((recipe) => {
+    
+
     const card = document.createElement("div");
     const cardImg = document.createElement("div");
     const cardDesc = document.createElement("div");
@@ -121,6 +109,22 @@ function displayRecipes(recipes, arrayTag, totalRecipes) {
     const recipeBlock = document.createElement("div");
     const recipeIngredients = document.createElement("ul");
     const recipeDesc = document.createElement("p");
+
+    
+   
+
+      //recipeDesc.innerHTML = 
+      const widthText = recipe.description
+      widthText.split(' ');
+      const wordArray = recipe.description;
+      if(widthText.length > 200) {
+          recipeDesc.innerHTML = wordArray.slice(0,200) + '...';
+      }
+      else{
+        recipeDesc.innerHTML = wordArray
+      }
+ 
+ 
 
     card.classList.add("card");
     cardImg.classList.add("card-img");
@@ -134,7 +138,7 @@ function displayRecipes(recipes, arrayTag, totalRecipes) {
     <path d="M10 0C4.5 0 0 4.5 0 10C0 15.5 4.5 20 10 20C15.5 20 20 15.5 20 10C20 4.5 15.5 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18ZM10.5 5H9V11L14.2 14.2L15 12.9L10.5 10.2V5Z" fill="black"/>
     </svg>
      ${recipe.time} min`;
-    recipeDesc.textContent = recipe.description;
+    //recipeDesc.textContent = el;
     for (let value of recipe.ingredients) {
       const ingredient = document.createElement("li");
       if (value.unit) {
